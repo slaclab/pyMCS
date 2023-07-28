@@ -1,0 +1,55 @@
+import numpy as np
+from SmarAct import SmarActController
+from datetime import datetime
+import logging
+import matplotlib.pyplot as plt
+
+now = datetime.now()
+safe_range = 5E5
+stage_SN  = 'SLC2445ds-15'
+date_time = now.strftime("%m%d%Y_%H_%M")
+file_name = 'logs/{}_{}.log'.format(stage_SN, date_time)
+logging.basicConfig(filename=file_name, filemode='w', format='%(name)s - %(levelname)s - %(message)s', level= logging.INFO)
+logging.info("BEGINNING TEST")
+logging.info("Date: {}, Time: {}".format(now.strftime("%m/%d/%Y"), now.strftime("%H:%M:%S")))
+logging.info("Stage serial number: {}".format(stage_SN))
+smart = SmarActController('COM3')
+smart.connect()
+smart.get_system_id()
+smart.get_sensor_type(0)
+smart.get_position(0)
+print("Physical position known: {}".format(smart.get_physical_position_known(0)))
+smart.set_closed_loop_max_frequency(0, 5000)
+smart.set_closed_loop_move_speed(0, 1E6)
+print("Closed loop velocity: {}".format(smart.get_closed_loop_speed(0)))
+smart.move_position_absolute(0, -27E6)
+smart.status_polling(0, 0, 35)
+negative_limit = smart.get_position(0)
+smart.find_reference_mark(0, 1)
+smart.status_polling(0, 0, 15)
+smart.move_position_absolute(0, 27E6)
+smart.status_polling(0, 0, 35)
+positive_limit = smart.get_position(0)
+smart.move_position_absolute(0, negative_limit + safe_range)
+smart.status_polling(0, 0, 35)
+smart.get_position(0)
+smart.set_closed_loop_move_speed(0, 1E6)
+smart.move_position_absolute(0, negative_limit-1000, 2000)
+smart.status_polling(0, 0, 35)
+smart.get_position(0)
+smart.move_position_relative(0, -1000, 500)
+smart.status_polling(0, 0, 35)
+smart.get_position(0)
+smart.move_position_relative(0, 500, 500)
+smart.status_polling(0, 0, 35)
+smart.get_position(0)
+smart.set_closed_loop_move_speed(0, 1E5)
+homing_positions = smart.homing(0, 3000, 35)
+plt.figure()
+plt.plot(homing_positions[0], homing_positions[1])
+plt.show()
+'''
+smart.move_position_relative(0, -1000, 500)
+smart.status_polling(0, 0, 35)
+smart.get_position(0)
+'''

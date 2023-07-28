@@ -1,0 +1,110 @@
+{
+    "0" : {
+        "description" : "No Error",
+        "long_description" : "This indicates that no error occurred and therefore corresponds to an acknowledge."
+    },
+    "1" : {
+        "description" : "Syntax Error",
+        "long_description" : "The command could not be processed due to a syntactical error."
+    },
+    "2" : {
+        "description" : " Invalid Command Error",
+        "long_description" : "The command given is not known to the system."
+    },
+    "3" : {
+        "description" : "Overflow Error",
+        "long_description" : "This error occurs if a parameter given is too large and therefore cannot be processed."
+    },
+    "4" : {
+        "description" : "Parse Error",
+        "long_description" : "The command could not be processed due to a parse error."
+    },
+    "5" : {
+        "description" : "Too Few Parameters Error",
+        "long_description" : "The specified command requires more parameters in order to be executed."
+    },
+    "6" : {
+        "description" : "Too Many Parameters Error",
+        "long_description" : "There were too many parameters given for the specified command."
+    },
+    "7" : {
+        "description" : "Invalid Parameter Error",
+        "long_description" : "A parameter given exceeds the valid range. Please see the command description for valid ranges of the parameters."
+    },
+    "8" : {
+        "description" : "Wrong Mode Error",
+        "long_description" : "This error is generated if the specified command is not available in the current communication mode. For example, the SRC command is not executable in synchronous mode."
+    },
+    "129" : {
+        "description" : "No Sensor Present Error",
+        "long_description" : "This error occurs if a command was given that requires sensor feedback, but the addressed positioner has none attached."
+    },
+    "140" : {
+        "description" : "Sensor Disabled Error",
+        "long_description" : "This error occurs if a command was given that requires sensor feedback, but the sensor of the addressed positioner is disabled (see SSE command)."
+    },
+    "141" : {
+        "description" : "Command Overridden Error",
+        "long_description" : "This error is only generated in the asynchronous communication mode. When the software commands a movement which is then interrupted by the Hand Control Module, an error of this type is generated."
+    },
+    "142" : {
+        "description" : "End Stop Reached Error",
+        "long_description" : "This error is generated in asynchronous mode if the target position of a closed-loop command could not be reached, because a mechanical end stop was detected. After this error the positioner will have a movement status code of 0 (stopped)."
+    },
+    "143" : {
+        "description" : "Wrong Sensor Type Error",
+        "long_description" : "This error occurs if a closed-loop command does not match the sensor type that is currently configured for the addressed channel. For example, issuing a GP command while the targeted channel is configured as rotary will lead to this error."
+    },
+    "144" : {
+        "description" : "Could Not Find Reference Mark Error",
+        "long_description" : "This error is generated in asynchronous mode (see SCM) if the search for a reference mark was aborted. See section 2.3.3 Reference Marks for more information."
+    },
+    "145" : {
+        "description" : "Wrong End Effector Type Error",
+        "long_description" : "This error occurs if a command does not match the end effector type that is currently configured for the addressed channel. For example, sending GF while the targeted channel is configured for a gripper will lead to this error."
+    },
+    "146" : {
+        "description" : "Movement Locked Error",
+        "long_description" : "This error occurs if a movement command is issued while the system is in the locked state. See section 2.2.1 Emergency Stop for more information."
+    },
+    "147" : {
+        "description" : "Range Limit Reached Error",
+        "long_description" : "If a range limit is defined (SPL or SAL) and the positioner is about to move beyond this limit, then the positioner will stop and report this error (only in asynchronous mode, see SCM). After this error the positioner will have status code of 0 (stopped)."
+    },
+    "148" : {
+        "description" : "Physical Position Unknown Error",
+        "long_description" : "A range limit is only allowed to be defined if the positioner knows its physical position. If this is not the case, the commands SPL and SAL will return this error code."
+    },
+    "150" : {
+        "description" : "Command Not Processable Error",
+        "long_description" : "This error is generated if a command is sent to a channel when it is in a state where the command cannot be processed. For example, to change the sensor type of a channel the addressed channel must be completely stopped. In this case send a stop command before changing the type."
+    },
+    "151" : {
+        "description" : "Waiting For Trigger Error",
+        "long_description" : "If there is at least one command queued in the command queue then you may only append more commands (if the queue is not full), but you may not issue movement commands for immediate execution. Doing so will generate this error. See section 2.4.5 Command Queues."
+    },
+    "152" : {
+        "description" : "Command Not Triggerable Error",
+        "long_description" : "After sending a ATC command you are required to issue a movement command that is to be triggered by the given event source. Commands that cannot be triggered will generate this error."
+    },
+    "153" : {
+        "description" : "Command Queue Full Error",
+        "long_description" : "This error is generated if you attempt to append more commands to the command queue, but the queue cannot hold anymore commands. The queue capacity may be read out with a get channel property command (GCP on p.30)."
+    },
+    "154" : {
+        "description" : "Invalid Component Error",
+        "long_description" : "Indicates that a component (e.g. SCP) was selected that does not exist."
+    },
+    "155" : {
+        "description" : "Invalid Sub Component Error",
+        "long_description" : "Indicates that a sub component (e.g. SCP) was selected that does not exist."
+    },
+    "156" : {
+        "description" : "Invalid Property Error",
+        "long_description" : "Indicates that a property (e.g. SCP) was selected that does not exist."
+    },
+    "157" : {
+        "description" : "Permission Denied Error",
+        "long_description" : "This error is generated when you call a functionality which is not unlocked for the system (e.g. Low  Vibration Mode)."
+    }
+}

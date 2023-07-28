@@ -1,0 +1,11 @@
+{
+    "0":"Stopped",
+    "1":"Stepping",
+    "2":"Scanning",
+    "3":"Holding",
+    "4":"Targeting",
+    "5":"Move delay",
+    "6":"Calibrating",
+    "7":"Finding reference mark",
+    "9":"Loked"
+}
